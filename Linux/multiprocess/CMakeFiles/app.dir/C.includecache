@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/hgfs/CodeBase/Linux/multiprocess/example.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+sys/ipc.h
+-
+sys/types.h
+-
+sys/msg.h
+-
+

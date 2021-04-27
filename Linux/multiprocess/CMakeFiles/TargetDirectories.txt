@@ -1,0 +1,3 @@
+/mnt/hgfs/CodeBase/Linux/multiprocess/CMakeFiles/rebuild_cache.dir
+/mnt/hgfs/CodeBase/Linux/multiprocess/CMakeFiles/edit_cache.dir
+/mnt/hgfs/CodeBase/Linux/multiprocess/CMakeFiles/app.dir
