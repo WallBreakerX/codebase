@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <pthread.h>
+#include <unistd.h>
 
 #define BUFFER_SIZE 16 // 缓冲区数量
 struct prodcons
