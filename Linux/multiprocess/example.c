@@ -4,12 +4,15 @@
 #include<sys/ipc.h>
 #include <sys/types.h>
 #include<sys/msg.h>
+#include<netinet/tcp.h> 
 
 int glob=10;
 
+#define SIZETEXT    12
+
 typedef struct mymsg{
     long int mtype;
-    char mtext[64];
+    char mtext[SIZETEXT];
 }MSG;
 
 static void my_exit1(void)  //进程退出时调用函数
@@ -24,6 +27,8 @@ static void my_exit2(void)
  
 int main()
 {
+    struct tcp_info info; 
+
     int local = 8;
     pid_t pid;
     // key_t key = ftok("/tmp",66);
@@ -37,6 +42,7 @@ int main()
         printf("Create msgid faile\n");
         exit(0);
     }
+    printf(">>> msgid: %d\n", msgid);
 
 
     if(atexit(my_exit1)!=0)  //为进程注册的退出时调用函数也会被子进程共享，先注册的后调用
@@ -56,10 +62,12 @@ int main()
             MSG msgtext = {0};
             msgtext.mtype = 1;
             sprintf(msgtext.mtext, "I killed %d man\n", i);
-            printf(">> Son Send: %s\n", msgtext.mtext);
-            if (msgsnd(msgid, (void*)&msgtext, 64, 0) != 0)
-                printf("Send faile\n");
-            sleep(1);
+            
+            if (msgsnd(msgid, (void*)&msgtext, sizeof(msgtext.mtext), IPC_NOWAIT) != 0)
+                printf(">>>> msg is FULL!!!Send faile\n");
+            else{
+                printf(">> Son Send: %s\n", msgtext.mtext);
+            }
         }
         MSG msgtext = {0};
         msgtext.mtype = 1;
@@ -69,10 +77,11 @@ int main()
     }
     else if(pid > 0)
     {
+        sleep(10);
         while(1){
             MSG msgtext = {0};
             memset(&msgtext, 0 ,sizeof(msgtext));
-            msgrcv(msgid, (void*)&msgtext, 64, 0, 0);
+            msgrcv(msgid, (void*)&msgtext, sizeof(msgtext.mtext), 0, 0);
             printf(">> Father Recv: %s\n", msgtext.mtext);
 
             if (strcmp(msgtext.mtext, "Over") == 0){
@@ -80,6 +89,7 @@ int main()
                 msgctl(msgid, IPC_RMID, NULL);
                 break;
             }
+            sleep(1);
         }    
     }
     else

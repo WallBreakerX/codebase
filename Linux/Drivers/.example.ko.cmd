@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/CodeBase/Linux/Drivers/example.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000  --build-id=sha1  -T ./scripts/module-common.lds -o /mnt/hgfs/CodeBase/Linux/Drivers/example.ko /mnt/hgfs/CodeBase/Linux/Drivers/example.o /mnt/hgfs/CodeBase/Linux/Drivers/example.mod.o;  true
