@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/CodeBase/Linux/Drivers/Module.symvers := sed 's/ko$$/o/' /mnt/hgfs/CodeBase/Linux/Drivers/modules.order | scripts/mod/modpost -m -a   -o /mnt/hgfs/CodeBase/Linux/Drivers/Module.symvers -e -i Module.symvers   -T -
