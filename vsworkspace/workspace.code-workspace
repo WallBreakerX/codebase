@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "..\\Linux\\Binarytree"
+		},
+		{
+			"path": "..\\Linux\\linkedlist"
+		},
+		{
+			"path": "..\\Linux\\multiprocess"
+		},
+		{
+			"path": "..\\Linux\\multithreading"
+		}
+	]
+}

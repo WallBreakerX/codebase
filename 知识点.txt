@@ -1,0 +1,16 @@
+CMAKE
+    通配符添加文件：
+        file(GLOB LIBS "${BOOST_PATH}/libboost*.a")
+        target_link_libraries(${TARGET} PRIVATE ${LIBS})
+
+tar.gz文件解压命令
+    tar zxvf
+
+tar.xz解压为tar
+    zx -d [file]
+
+Ubuntu开机自启脚本/etc/profile
+
+cp递归复制cp -r [file] dfile
+    -r 都是递归文件夹
+
